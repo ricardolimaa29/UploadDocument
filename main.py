@@ -2,6 +2,7 @@ import customtkinter as ctk
 import tkinter as tk
 from tkinter import ttk
 
+import time
 
 janela = ctk.CTk()
 # Configrações do aplicativo
@@ -10,7 +11,7 @@ janela.title("UploadFiles with Python")
 # Tamanho do App
 janela.geometry("1280x700")#Tamanho do app
 # Tema
-janela._set_appearance_mode('dark-green')
+janela._set_appearance_mode('dark')
 # Icone
 # Trava maxix e mini
 janela.resizable(False,False)
@@ -19,8 +20,15 @@ janela.resizable(False,False)
 
 # Frames
 ############################################################################ Perfil
+
+
 frame_perfil = ctk.CTkFrame(janela,width=250,height=700).place(x=0,y=0)
 text1 = ctk.CTkLabel(frame_perfil,text='Perfil',bg_color='transparent').place(x=5,y=5)
+
+
+
+
+
 
 
 ############################################################################ Área de upload
@@ -64,5 +72,6 @@ for item in info:
 ############################################################################ Barra de status
 
 barra_status = ctk.CTkProgressBar (frame_principal,width=950, height=10, orientation='horizontal').place(x=270, y=650)
+
 
 janela.mainloop()
