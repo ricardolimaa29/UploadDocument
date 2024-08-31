@@ -28,7 +28,11 @@ text2 = ctk.CTkLabel(frame_principal,text='Área de upload').place(x=750,y=0)
 
 exibir_arquivo = ctk.CTkEntry(frame_principal, width=730, height=30).place(x=265, y=60)
 selecao_arquivos = ctk.CTkButton(frame_principal, text='Selecione o arquivo...', width= 200,height=30).place(x=1000, y=60)
+converter_arquivo = ctk.CTkButton(frame_principal, text= 'Converter arquivo', width=200, height=30).place(x=700, y=100)
+renomear_arquivo = ctk.CTkButton(frame_principal, text= 'renomear arquivo', width=200, height=30).place(x=400, y=100)
 
+############################################################################ Barra de status
 
+barra_status = ctk.CTkProgressBar (frame_principal,width=1000, height=30, orientation='horizontal').place(x=230, y=500)
 
 janela.mainloop()
