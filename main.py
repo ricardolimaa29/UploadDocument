@@ -5,6 +5,12 @@ from PIL import Image,ImageTk
 import time
 from tkinter import filedialog
 
+# Functions
+def selecione():
+    
+    destino = filedialog.askopenfilename()
+    exibir_arquivo.config(frame_principal,text={destino})
+    selecao_arquivos.config(text="Arquivo Selecionado")
 
 janela = ctk.CTk()
 # Configrações do aplicativo
@@ -21,15 +27,6 @@ janela.resizable(False,False)
 ### Fontes
 perfil_font_text = ctk.CTkFont('Arial',size=20)
 status_font_text = ctk.CTkFont('Arial', size=15)
-
-
-# Functions
-def selecione():
-    destino = filedialog.askopenfilename()
-
-
-
-
 
 
 
@@ -67,11 +64,10 @@ text2 = ctk.CTkLabel(frame_principal,text='Área de upload').place(x=750,y=0)
 
 ############################################################################ Seleção de arquivos
 
-exibir_arquivo = ctk.CTkEntry(frame_principal, width=730, height=30).place(x=265, y=60)
+exibir_arquivo = ctk.CTkEntry(frame_principal,placeholder_text="Teste", width=730, height=30).place(x=265, y=60)
 selecao_arquivos = ctk.CTkButton(frame_principal, text='Selecione o arquivo...', width= 200,height=30,command=selecione).place(x=1000, y=60)
 converter_arquivo = ctk.CTkButton(frame_principal, text= 'Converter arquivo', width=200, height=30).place(x=700, y=100)
 renomear_arquivo = ctk.CTkButton(frame_principal, text= 'renomear arquivo', width=200, height=30).place(x=400, y=100)
-
 ############################################################################ Visualização de arquivos
 
 frame_tabela = ctk.CTkFrame(frame_principal, width=10, height=10)
