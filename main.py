@@ -1,5 +1,11 @@
 import customtkinter as ctk
 import time
+from PIL import Image,ImageTk
+from pyautogui import mouseInfo
+
+
+
+font_text_name = ('Arial 20')
 
 janela = ctk.CTk()
 # Configrações do aplicativo
@@ -15,12 +21,28 @@ janela.resizable(False,False)
 # Frames
 ############################################################################ Perfil
 
+# Foto Perfil
+img= (Image.open("UploadDocument\imagens\perfil.png"))
+resized_image= img.resize((250,240))
+my_img=ImageTk.PhotoImage(resized_image)
+# Fontes
+nome_text_font = ctk.CTkFont(family='Arial',size=20)
+perfil_font_text = ctk.CTkFont(family='Arial', size=15)
+
+# Foto Nuvem
+img= (Image.open(f"UploadDocument\imagens\\nuvem.png"))
+resized_image= img.resize((20,20))
+my_imgNuvem=ImageTk.PhotoImage(resized_image)
+
+
 
 frame_perfil = ctk.CTkFrame(janela,width=250,height=700).place(x=0,y=0)
-text1 = ctk.CTkLabel(frame_perfil,text='Perfil',bg_color='transparent').place(x=5,y=5)
 
+#colocando a imagem em Label e customizando
+perfil_profile = ctk.CTkLabel(frame_perfil, image=my_img,text="").place(x=0, y=0)
+nome = ctk.CTkLabel(frame_perfil,text='Ana Carolina',bg_color='#2B2B2B',font=nome_text_font).place(x=70,y=250)
 
-
+barra_status = ctk.CTkProgressBar(frame_perfil, width=200,height=2,orientation='horizontal',progress_color='Red').place(x=5,y=650)
 
 
 
@@ -40,7 +62,8 @@ renomear_arquivo = ctk.CTkButton(frame_principal, text= 'renomear arquivo', widt
 
 ############################################################################ Barra de status
 
-barra_status = ctk.CTkProgressBar (frame_principal,width=1000, height=30, orientation='horizontal').place(x=230, y=500)
-
+text_utilizado = ctk.CTkLabel(frame_perfil,text='Armazenamento',bg_color='#2B2B2B',font=perfil_font_text).place(x=35,y=620)
+nuvem = ctk.CTkLabel(frame_perfil, image=my_imgNuvem,text="",bg_color='#2B2B2B').place(x=10, y=620)
+textInfoArmazenamento = ctk.CTkLabel(frame_perfil,text="7,14 GB de 15 GB usados",bg_color='#2B2B2B',font=perfil_font_text).place(x=5,y=660)
 
 janela.mainloop()
