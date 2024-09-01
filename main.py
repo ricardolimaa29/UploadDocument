@@ -29,6 +29,9 @@ perfil_font_text = ctk.CTkFont('Arial',size=20)
 status_font_text = ctk.CTkFont('Arial', size=15)
 
 
+print('asasasa')
+
+
 
 # Frames
 ############################################################################ Perfil
