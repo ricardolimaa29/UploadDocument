@@ -4,13 +4,8 @@ from tkinter import ttk
 from PIL import Image,ImageTk
 import time
 from tkinter import filedialog
+from CTkTable import *
 
-# Functions
-def selecione():
-    
-    destino = filedialog.askopenfilename()
-    exibir_arquivo.config(frame_principal,text={destino})
-    selecao_arquivos.config(text="Arquivo Selecionado")
 
 janela = ctk.CTk()
 # Configrações do aplicativo
@@ -19,19 +14,24 @@ janela.title("UploadFiles with Python")
 # Tamanho do App
 janela.geometry("1280x700")#Tamanho do app
 # Tema
-janela._set_appearance_mode('light')
+janela._set_appearance_mode('dark')
 # Icone
 # Trava maxix e mini
 janela.resizable(False,False)
+
 
 ### Fontes
 perfil_font_text = ctk.CTkFont('Arial',size=20)
 status_font_text = ctk.CTkFont('Arial', size=15)
 
 
-print('asasasa')
-
-
+# Functions
+def selecione():
+    
+    destino = filedialog.askopenfilename()
+    exibir_arquivo.delete(0,ctk.END)
+    exibir_arquivo.insert(0, destino)
+    selecao_arquivos.configure(text="Arquivo Selecionado")
 
 # Frames
 ############################################################################ Perfil
@@ -57,45 +57,42 @@ barra_status_perfil = ctk.CTkProgressBar (frame_perfil,width=210, height=5, orie
 textInfoArmazenamento = ctk.CTkLabel(frame_perfil,text="7,14 GB de 15 GB usados",bg_color='#2B2B2B',font=status_font_text).place(x=5,y=660)
 
 
-
-
-
-############################################################################ Área de upload
-frame_principal = ctk.CTkFrame(janela,width=1029,height=700).place(x=252,y=0)
-text2 = ctk.CTkLabel(frame_principal,text='Área de upload').place(x=750,y=0)
-
-
-############################################################################ Seleção de arquivos
-
-exibir_arquivo = ctk.CTkEntry(frame_principal,placeholder_text="Teste", width=730, height=30).place(x=265, y=60)
-selecao_arquivos = ctk.CTkButton(frame_principal, text='Selecione o arquivo...', width= 200,height=30,command=selecione).place(x=1000, y=60)
-converter_arquivo = ctk.CTkButton(frame_principal, text= 'Converter arquivo', width=200, height=30).place(x=700, y=100)
-renomear_arquivo = ctk.CTkButton(frame_principal, text= 'renomear arquivo', width=200, height=30).place(x=400, y=100)
-############################################################################ Visualização de arquivos
-
-frame_tabela = ctk.CTkFrame(frame_principal, width=10, height=10)
-frame_tabela.pack(padx=200,pady=150)
-
-tabela = ttk.Treeview(frame_tabela, columns=('Descrição', 'Tamanho', 'Tipo'), show='headings')
-
-tabela.heading('Descrição', text='DESCRIÇÃO')
-tabela.heading('Tamanho', text='TAMANHO')
-tabela.heading('Tipo', text='TIPO')
-
-tabela.column('Descrição', width=200)
-tabela.column('Tamanho', width=200)
-tabela.column('Tipo', width=200)
-
-tabela.pack(padx=10,pady=10,fill='both',expand=True)
-
+############################################################################ Área do Frame Principal
+frame_principal = ctk.CTkFrame(janela,width=1209,height=700).place(x=252,y=0)
 info = [
-    ('main.py', '250KBps', '.py'),
-    ('UHULL', '123KBps', 'Texto'),
-    ('Laucher', '1GB', 'Exe')
+    ('main.py', '250KBps', 'py'),
+    ('bloco.txt', '123KBps', 'txt'),
+    ('Laucher.exe', '1GB', 'exe'),
+    ('lua.jpg', '123KBps', 'jpg'),
+    ('PB', '4GB', 'exe'),
+    ('musica', '250KBps', 'mp3'),
+    ('arq.zip', '1GB', 'zip'),
+    ('filme', '2GB', 'mp4'),
+    ('vscode', '1GB', 'exe')
 ]
 
-for item in info:
-    tabela.insert('','end',values=item)
+tabela = CTkTable(janela,width=10, values=info,header_color="#4169e1",corner_radius=15,color_phase="horizontal",command=getattr,border_color="white",hover_color="#1f29c6")
+tabela.pack(fill="both", padx=252, pady=200)
+
+
+
+
+############################ Seleção de arquivos
+
+exibir_arquivo = ctk.CTkEntry(frame_principal,placeholder_text="Teste", width=730, height=30)
+exibir_arquivo.place(x=265, y=60)
+selecao_arquivos = ctk.CTkButton(frame_principal, text='Selecione o arquivo...', width= 200,height=30,command=selecione)
+selecao_arquivos.place(x=1000, y=60)
+
+converter_arquivo = ctk.CTkButton(frame_principal, text= 'Converter arquivo', width=200, height=30).place(x=700, y=100)
+renomear_arquivo = ctk.CTkButton(frame_principal, text= 'renomear arquivo', width=200, height=30).place(x=400, y=100)
+
+
+############################ Visualização de arquivos
+
+
+
+
 
 ############################################################################ Barra de status
 
