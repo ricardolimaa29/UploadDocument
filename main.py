@@ -33,6 +33,12 @@ def selecione():
     exibir_arquivo.insert(0, destino)
     selecao_arquivos.configure(text="Arquivo Selecionado")
 
+def selecao_opcoes_drop(resultado):
+     print('erro', resultado)
+
+def verificar():
+    selecione()
+
 # Frames
 ############################################################################ Perfil
 
@@ -71,6 +77,7 @@ info = [
     ('vscode', '1GB', 'exe')
 ]
 
+
 tabela = CTkTable(janela,width=10, values=info,header_color="#4169e1",corner_radius=15,color_phase="horizontal",command=getattr,border_color="white",hover_color="#1f29c6")
 tabela.pack(fill="both", padx=252, pady=200)
 
@@ -83,9 +90,14 @@ exibir_arquivo = ctk.CTkEntry(frame_principal,placeholder_text="Teste", width=73
 exibir_arquivo.place(x=265, y=60)
 selecao_arquivos = ctk.CTkButton(frame_principal, text='Selecione o arquivo...', width= 200,height=30,command=selecione)
 selecao_arquivos.place(x=1000, y=60)
+verificacao = ctk.CTkButton(frame_principal, text= 'Verificar', width=200, height=30, command=verificar).place(x=700, y=100)
 
-converter_arquivo = ctk.CTkButton(frame_principal, text= 'Converter arquivo', width=200, height=30).place(x=700, y=100)
-renomear_arquivo = ctk.CTkButton(frame_principal, text= 'renomear arquivo', width=200, height=30).place(x=400, y=100)
+
+
+dropdown = ctk.CTkComboBox(janela, values=['Local', 'Nuvem'], command=selecao_opcoes_drop)
+dropdown.set('selecione')
+dropdown.place(x=265, y=100)
+
 
 
 ############################ Visualização de arquivos
